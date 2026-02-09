@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/api/copyscape",
+      "methods": ["GET", "POST", "OPTIONS"],
+      "dest": "/api/copyscape.js"
+    }
+  ]
+}

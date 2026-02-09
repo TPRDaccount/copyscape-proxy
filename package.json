@@ -1,0 +1,8 @@
+{
+  "name": "copyscape-proxy",
+  "version": "1.0.0",
+  "description": "Copyscape API proxy for ContentCheck",
+  "scripts": {
+    "dev": "vercel dev"
+  }
+}
