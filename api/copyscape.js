@@ -19,25 +19,25 @@ export default async function handler(req, res) {
     const text = req.body?.text || req.query.text || '';
 
     if (action === 'balance') {
-      const response = await fetch(
-        `https://www.copyscape.com/api/?u=${COPYSCAPE_USER}&o=balance&t=${COPYSCAPE_API_KEY}&f=json`
-      );
+      const url = `https://www.copyscape.com/api/?u=${COPYSCAPE_USER}&o=balance&a=${COPYSCAPE_API_KEY}&f=json`;
+      const response = await fetch(url);
       const data = await response.json();
       return res.status(200).json(data);
     } 
     
     if (action === 'search') {
+      const params = new URLSearchParams();
+      params.append('u', COPYSCAPE_USER);
+      params.append('o', 'csearch');
+      params.append('a', COPYSCAPE_API_KEY);
+      params.append('f', 'json');
+      params.append('e', 'UTF-8');
+      params.append('t', text);
+      
       const response = await fetch('https://www.copyscape.com/api/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          u: COPYSCAPE_USER,
-          o: 'csearch',
-          t: COPYSCAPE_API_KEY,
-          f: 'json',
-          e: 'UTF-8',
-          t: text
-        })
+        body: params.toString()
       });
       const data = await response.json();
       return res.status(200).json(data);
