@@ -11,15 +11,14 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const COPYSCAPE_USER = 'repdef';
-  const COPYSCAPE_API_KEY = 'iq21fxyjet43ofeh';
+  const COPYSCAPE_USER = 'thomaspowell';
+  const COPYSCAPE_API_KEY = 'xpmtqh36sjlhkqbi';
 
   try {
     const action = req.query.action || req.body?.action;
     const text = req.body?.text || req.query.text || '';
 
     if (action === 'balance') {
-      // Correct format: u=username, k=apikey, o=balance
       const url = `https://www.copyscape.com/api/?u=${COPYSCAPE_USER}&k=${COPYSCAPE_API_KEY}&o=balance&f=json`;
       const response = await fetch(url);
       const data = await response.json();
